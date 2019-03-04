@@ -1,0 +1,14 @@
+protected override void Seed(SESTECContext context)
+        {
+            //criar alguns dados no banco
+
+            new List<Empregado>
+            {
+                new Empregado
+                {
+                    IDEmpregado = "14d57737-5611-4216-8f1d-cc120b16dbc3",
+                    CPF ="24547551812",
+                    Nome ="Antonio Heriques Pereira",
+                    DataNascimento ="07011974",
+
+
