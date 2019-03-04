@@ -23,7 +23,15 @@
                                 <th class="center">
                                     &nbsp;
                                 </th>
-                                <th>Ambientes</th>
+                                <th>
+                                    Ambientes
+                                </th>
+                                <th>
+                                    Riscos
+                                </th>
+                                <th>
+                                    Possíveis Danos
+                                </th>
                             </tr>
                         </thead>
 
@@ -31,25 +39,35 @@
 
                             @foreach (AnaliseRiscosViewModel item in Model)
                             {
-                                <tr>
-                                    <td class="center">
-                                        <label class="pos-rel">
+                            <tr>
+                                <td class="center">
+                                    <label class="pos-rel">
 
-                                            @{
-                                                string PossuiOMenu = string.Empty;
-                                                if (item.AlocaAtividade)
-                                                {
-                                                    PossuiOMenu = " checked=\" ";
-                                                }
+                                        @{
+                                            string PossuiOMenu = string.Empty;
+                                            if (item.AlocaAtividade)
+                                            {
+                                                PossuiOMenu = " checked=\" ";
                                             }
+                                        }
 
-                                            <input type="checkbox" onclick="SalvarAtividadeEstabelecimento(this.checked, '@item.IDAtividadeEstabelecimento','@item.IDAlocacao');" @PossuiOMenu class="ace">
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
+                                        <input type="checkbox" onclick="SalvarAtividadeEstabelecimento(this.checked, '@item.IDAtividadeEstabelecimento','@item.IDAlocacao');" @PossuiOMenu class="ace">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    @item.DescricaoAtividade
+                                </td>
+                                <td>
+                                    @item.Riscos
+                                </td>
+                                <td>
+                                    @item.PossiveisDanos
+                                </td>
 
-                                    <td>@item.DescricaoAtividade</td>
-                                </tr>
+
+
+                            </tr>
                             }
 
                         </tbody>

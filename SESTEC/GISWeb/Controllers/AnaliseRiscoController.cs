@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GISModel.Enums;
 
 namespace GISWeb.Controllers
 {
@@ -63,7 +64,12 @@ namespace GISWeb.Controllers
                                          AlocaAtividade = (item == null ? false : true),
                                          IDAtividadeEstabelecimento = Ambiente.IDAtividadesDoEstabelecimento,
                                          IDAlocacao = idAlocacao,
-                                         idTipoDeRisco = iten2.IDTipoDeRisco
+                                         Riscos = iten2.PerigoPotencial.DescricaoEvento,
+                                         FonteGeradora=iten2.FonteGeradora,
+                                         EClasseDoRisco = iten2.EClasseDoRisco,
+                                         Tragetoria = iten2.Tragetoria,
+                                         PossiveisDanos=iten2.PossiveisDanos.DescricaoDanos
+                                         
 
                                      };
             
