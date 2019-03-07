@@ -20,37 +20,101 @@
                     <table id="tablePerfisPorMenu" class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th class="center">
-                                    &nbsp;
+
+                                <th>
+                                    Ambientes
                                 </th>
-                                <th>Ambientes</th>
-                            </tr>
+
+                                <th>
+                                    Riscos
+                                </th>
+                                <th>
+                                    Possíveis Danos
+                                </th>
+                                <th class="center">
+
+                                    Domina a Atividade
+                                </th>
+                                <th class="center">
+
+                                    Sente-se Bem?
+                                </th>
+                                <th class="center">
+                                    Salvar
+                                </th>
+
+                            </tr>  
+                           
                         </thead>
+                        
 
                         <tbody>
 
                             @foreach (AnaliseRiscosViewModel item in Model)
                             {
-                                <tr>
-                                    <td class="center">
-                                        <label class="pos-rel">
+                            <tr>
 
-                                            @{
-                                                string PossuiOMenu = string.Empty;
-                                                if (item.AlocaAtividade)
-                                                {
-                                                    PossuiOMenu = " checked=\" ";
-                                                }
+                                <td>
+                                    @item.DescricaoAtividade
+                                </td>
+
+                                <td>
+                                    @item.Riscos
+                                </td>
+                                <td>
+                                    @item.PossiveisDanos
+                                </td>
+                                <td class="center">
+                                    <i class="ace-icon fa fa-smile-o bigger-140" style="color:green"></i>
+                                    <br/>
+                                    <label class="pos-rel">
+                                        
+                                        <input type="checkbox" name="conhecimento" id="@item.Conhecimento"class="ace">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+                                <td class="center">
+                                    <i class="ace-icon fa fa-smile-o bigger-140" style="color:green"></i>
+                                    <br/>
+                                    <label class="pos-rel">
+
+                                        <input type="checkbox" name="bemEstar" id="@item.BemEstar" class="ace">
+                                        @{
+                                            string PossuiOMenu1 = string.Empty;
+                                            if (item.BemEstar)
+                                            {
+                                                item.BemEstar = true;
                                             }
+                                        }
+                                        <span class="lbl" title="Me sinto bem!"></span>
 
-                                            <input type="checkbox" onclick="SalvarAtividadeEstabelecimento(this.checked, '@item.IDAtividadeEstabelecimento','@item.IDAlocacao');" @PossuiOMenu class="ace">
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </td>
+                                    </label>
 
-                                    <td>@item.DescricaoAtividade</td>
-                                </tr>
+
+                                </td>
+
+                                <td class="center">
+                                    <label class="pos-rel">
+
+                                        @{
+                                            string PossuiOMenu = string.Empty;
+                                            if (item.AlocaAtividade)
+                                            {
+                                                PossuiOMenu = " checked=\" ";
+                                            }
+                                        }
+                                        <br/>
+                                        <input type="checkbox" onclick="SalvarAnaliseRisco(this.checked, '@item.IDAtividadeEstabelecimento','@item.IDAlocacao','@item.BemEstar','@item.Conhecimento');" @PossuiOMenu class="ace">
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+
+                            </tr>
+
+
                             }
+
+
 
                         </tbody>
                     </table>

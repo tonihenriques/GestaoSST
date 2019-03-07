@@ -38,6 +38,10 @@ namespace GISModel.Entidades
         [Display(Name ="Medidas de Controle")]
         public string IDControle { get; set; }
 
+        public bool Conhecimento { get; set; }
+
+        public bool BemEstar { get; set; }
+
         public virtual AtividadeAlocada AtividadeAlocada { get; set; }
 
         public virtual Alocacao Alocacao{ get; set; }

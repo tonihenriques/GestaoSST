@@ -22,7 +22,29 @@ function SalvarAtividadeEstabelecimento(Acao, idAtividadeEstabelecimento, idAloc
     );
     
    
-};
+}
+
+function SalvarAnaliseRisco(Acao, idAtividadeEstabelecimento, idAlocacao,bemEstar,conhecimento)
+{
+    $(".LoadingLayout").show();
+    $('.page-content-area').ace_ajax('startLoading');
+    $.post('/AnaliseRisco/SalvarAnaliseRisco',
+        {
+
+            Acao: Acao,
+            idAtividadeEstabelecimento: idAtividadeEstabelecimento,
+            idAlocacao: idAlocacao,
+            BemEstar: bemEstar,
+            Conhecimento: conhecimento
+        }, function (partial) {
+            $('.page-content-area').ace_ajax('stopLoading', true);
+            $(".LoadingLayout").hide();
+            alert("Item salvo!");
+        }
+    );
+
+
+}
 
 
 

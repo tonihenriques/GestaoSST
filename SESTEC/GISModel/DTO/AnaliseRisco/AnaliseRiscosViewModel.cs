@@ -20,9 +20,27 @@ namespace GISModel.DTO.AnaliseRisco
         public bool AlocaAtividade { get; set; }
 
         public string IDAtividadeEstabelecimento { get; set; }
+
         public string IDAlocacao { get; set; }
 
-        public string idTipoDeRisco { get; set; }
+        public string Riscos { get; set; }
+
+        public string idPossiveisDanos { get; set; }
+
+        public string idControle { get; set; }
+
+        public Enum EClasseDoRisco { get; set; }
+
+        public string Tragetoria { get; set; }
+
+        public string PossiveisDanos { get; set; }
+
+        public bool Conhecimento { get; set; }
+
+        public bool BemEstar { get; set; }
+
+
+
 
 
     }

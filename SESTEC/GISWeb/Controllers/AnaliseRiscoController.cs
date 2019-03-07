@@ -8,11 +8,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GISModel.Enums;
 
 namespace GISWeb.Controllers
 {
     public class AnaliseRiscoController : Controller
     {
+        #region-Inject
         [Inject]
         public IAtividadesDoEstabelecimentoBusiness AtividadesDoEstabelecimentoBusiness { get; set; }
 
@@ -22,6 +24,11 @@ namespace GISWeb.Controllers
 
         [Inject]
         public ITipoDeRiscoBusiness TipoDeRiscoBusiness { get; set; }
+
+        [Inject]
+        public IAnaliseRiscoBusiness AnaliseRiscoBusiness { get; set; }
+
+        #endregion
 
         // GET: AtividadeAlocada
         public ActionResult Novo(string id)
@@ -38,32 +45,43 @@ namespace GISWeb.Controllers
         public ActionResult PesquisarAtividadesRiscos(string idEstabelecimento, string idAlocacao)
         {
             ViewBag.Imagens = AtividadesDoEstabelecimentoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && (p.IDEstabelecimento.Equals(idEstabelecimento))).ToList();
+
             try
             {
 
 
-                var ListaAmbientes = from Ambiente in AtividadesDoEstabelecimentoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && (p.IDEstabelecimento.Equals(idEstabelecimento))).ToList()
-                                     join Aloca in AtividadeAlocadaBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.idAlocacao.Equals(idAlocacao)).ToList()
-
-                                     on Ambiente.IDAtividadesDoEstabelecimento equals Aloca.idAtividadesDoEstabelecimento
+                var ListaAmbientes = from Aloca in AtividadeAlocadaBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.idAlocacao.Equals(idAlocacao)).ToList()
+                                     join Ambiente in AtividadesDoEstabelecimentoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && (p.IDEstabelecimento.Equals(idEstabelecimento))).ToList()
+                                     
+                                     on Aloca.idAtividadesDoEstabelecimento equals Ambiente.IDAtividadesDoEstabelecimento                                     
                                      into productGrupo
-                                     from item in productGrupo.DefaultIfEmpty()
+                                     from item in productGrupo.DefaultIfEmpty()                                    
+                                    
 
                                      join TR in TipoDeRiscoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
-                                     on Ambiente.IDAtividadesDoEstabelecimento equals TR.idAtividadesDoEstabelecimento
+                                     on Aloca.idAtividadesDoEstabelecimento equals TR.idAtividadesDoEstabelecimento
+                                     
                                      into riscoGroup
-                                     from iten2 in riscoGroup.DefaultIfEmpty()
+                                     from iten2 in riscoGroup.DefaultIfEmpty()                                    
+
 
                                      select new AnaliseRiscosViewModel
                                      {
-                                         DescricaoAtividade = Ambiente.DescricaoDestaAtividade,
+                                         DescricaoAtividade = item.DescricaoDestaAtividade,
                                          //FonteGeradora = Ambiente.FonteGeradora,
-                                         NomeDaImagem = Ambiente.NomeDaImagem,
-                                         Imagem = Ambiente.Imagem,
+                                         NomeDaImagem = item.NomeDaImagem,
+                                         Imagem = item.Imagem,
                                          AlocaAtividade = (item == null ? false : true),
-                                         IDAtividadeEstabelecimento = Ambiente.IDAtividadesDoEstabelecimento,
+                                         IDAtividadeEstabelecimento = item.IDAtividadesDoEstabelecimento,
                                          IDAlocacao = idAlocacao,
-                                         idTipoDeRisco = iten2.IDTipoDeRisco
+                                         Riscos = iten2.PerigoPotencial.DescricaoEvento,
+                                         FonteGeradora=iten2.FonteGeradora,
+                                         EClasseDoRisco = iten2.EClasseDoRisco,
+                                         Tragetoria = iten2.Tragetoria,
+                                         PossiveisDanos=iten2.PossiveisDanos.DescricaoDanos,
+                                         Conhecimento = (item ==null?false:true),
+                                         BemEstar = (item == null ? false : true),
+
 
                                      };
             
@@ -96,26 +114,29 @@ namespace GISWeb.Controllers
 
         }
         
-        //Esta salvando em AtividadesAlocadas, precisa salvar em analise de riscos
+       
         [HttpPost]
-        public ActionResult SalvarAnaliseRisco(bool Acao, string idAtividadeEstabelecimento, string idAlocacao)
+        public ActionResult SalvarAnaliseRisco(bool Acao, string idAtividadeEstabelecimento, string idAlocacao, bool BemEstar,bool Conhecimento)
         {
             try
             {
                 System.Threading.Thread.Sleep(2000);
                 if (Acao)
                 {
-                    //Incluir vinculo entre Atividade do Estabelecimento e Alocação
+                    
                     if (idAlocacao.Contains("|"))
                     {
                         foreach (string item in idAlocacao.Split('|'))
                         {
                             if (!string.IsNullOrEmpty(item))
                             {
-                                AtividadeAlocadaBusiness.Inserir(new AtividadeAlocada()
+                                AnaliseRiscoBusiness.Inserir(new AnaliseRisco()
                                 {
-                                    idAlocacao = item,
-                                    idAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                                    IDAlocacao = item,
+                                    IDAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                                    BemEstar = BemEstar,
+                                    Conhecimento = Conhecimento, 
+                                    
                                     //UsuarioInclusao = CustomAuthorizationProvider.UsuarioAutenticado.Usuario.Login
                                 });
                             }
@@ -123,10 +144,13 @@ namespace GISWeb.Controllers
                     }
                     else
                     {
-                        AtividadeAlocadaBusiness.Inserir(new AtividadeAlocada()
+                        AnaliseRiscoBusiness.Inserir(new AnaliseRisco()
                         {
-                            idAlocacao = idAlocacao,
-                            idAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                                    IDAlocacao = idAlocacao,
+                                    IDAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                                    BemEstar = BemEstar,
+                                    Conhecimento = Conhecimento, 
+                                    
                             //UsuarioInclusao = CustomAuthorizationProvider.UsuarioAutenticado.Usuario.Login
                         });
                     }
@@ -140,11 +164,13 @@ namespace GISWeb.Controllers
                         {
                             if (!string.IsNullOrEmpty(item))
                             {
-                                AtividadeAlocadaBusiness.Alterar(new AtividadeAlocada()
+                                AnaliseRiscoBusiness.Alterar(new AnaliseRisco()
                                 {
 
-                                    idAlocacao = item,
-                                    idAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                                    IDAlocacao = item,
+                                    IDAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                                    BemEstar = BemEstar,
+                                    Conhecimento = Conhecimento,
                                     DataExclusao = DateTime.Now,
                                     //UsuarioExclusao = CustomAuthorizationProvider.UsuarioAutenticado.Usuario.Login
                                 });
@@ -154,11 +180,13 @@ namespace GISWeb.Controllers
                     else
                     {
 
-                        AtividadeAlocadaBusiness.Alterar(new AtividadeAlocada()
+                        AnaliseRiscoBusiness.Alterar(new AnaliseRisco()
                         {
 
-                            idAlocacao = idAlocacao,
-                            idAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                            IDAlocacao = idAlocacao,
+                            IDAtividadesDoEstabelecimento = idAtividadeEstabelecimento,
+                            BemEstar = BemEstar,
+                            Conhecimento = Conhecimento,
                             DataExclusao = DateTime.Now,
                             UsuarioExclusao = "LoginTeste"
                             //UsuarioExclusao = CustomAuthorizationProvider.UsuarioAutenticado.Usuario.Login
