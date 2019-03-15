@@ -36,3 +36,11 @@ C:\Users\Tonic\OneDrive\Área de Trabalho\ProjetosGIS\SesmtTecnologico02\SESTEC\
 C:\Users\Tonic\OneDrive\Área de Trabalho\ProjetosGIS\SesmtTecnologico02\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CopyComplete
 C:\Users\Tonic\OneDrive\Área de Trabalho\ProjetosGIS\SesmtTecnologico02\SESTEC\GISHelpers\obj\Debug\GISHelpers.dll
 C:\Users\Tonic\OneDrive\Área de Trabalho\ProjetosGIS\SesmtTecnologico02\SESTEC\GISHelpers\obj\Debug\GISHelpers.pdb
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\bin\Debug\GISHelpers.dll
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\bin\Debug\GISHelpers.pdb
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\bin\Debug\Ionic.Zip.dll
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csprojAssemblyReference.cache
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CoreCompileInputs.cache
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CopyComplete
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.dll
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.pdb

@@ -32,9 +32,9 @@
 
                                     <tr id="linha-@iAdmissao.IDAdmissao">
                                         <td width="200px">
-                                            <h1><b> @iAdmissao.Empregado.Nome&nbsp <h3>[ CPF - @iAdmissao.Empregado.CPF ]</h3></b></h1>
+                                            <h1><b> @iAdmissao.Empregado.Nome&nbsp</b></h1> <h3>[ CPF - @iAdmissao.Empregado.CPF ]</h3>
                                             <br />
-                                            <img src="/Images/AdmissaoImagens/@iAdmissao.IDAdmissao/@iAdmissao.Imagem" alt="Admissao" width="200px" />
+                                            <img src="/Images/AdmissaoImagens/@iAdmissao.IDAdmissao/@iAdmissao.Imagem" alt="Admissao" width="" />
 
                                             <br /><br /><br />
                                             <b>
@@ -136,18 +136,24 @@
                                         </a>
 
                                         @*<a class="btn btn-info2" href="#" onclick="EstabelecimentoAmbienteAlocado('@item.idEstabelecimento','@item.IDAlocacao');" data-rel="tooltip" title="Estabelecimento ">
-                                            <i class="ace-icon fa fa-check bigger-110"></i>
-                                            Ambientes &nbsp
-                                        </a>*@
+            <i class="ace-icon fa fa-check bigger-110"></i>
+            Ambientes &nbsp
+        </a>*@
                                         <a class="btn btn-info2 width-50" href="#" onclick="AlocarEmAmbiente('@item.idEstabelecimento','@item.IDAlocacao');" data-rel="tooltip" title="Alocar Ambientes ">
                                             <i class="ace-icon fa fa-check bigger-110"></i>
                                             Alocar Atividades &nbsp
                                         </a>
-
-                                        <a class="btn btn-info2 width-50" href="#" onclick="PesquisarAtividadesRiscos('@item.idEstabelecimento','@item.IDAlocacao');" data-rel="tooltip" title="Alocar Ambientes ">
-                                            <i class="ace-icon fa fa-check bigger-110"></i>
+                                        <a href="@Url.Action("SalvarAnaliseRisco", "AnaliseRisco", new { idEstabelecimento=@item.idEstabelecimento,idAlocacao= @item.IDAlocacao})" class="btn btn-white btn-info btn-bold" style="float: right; margin-top: -2px;">
+                                            <i class="ace-icon fa fa-plus bigger-120 blue"></i>
                                             Análise de Risco &nbsp
                                         </a>
+
+
+
+                                        @*<a class="btn btn-info2 width-50" href="#" onclick="PesquisarAtividadesRiscos('@item.idEstabelecimento','@item.IDAlocacao');" data-rel="tooltip" title="Alocar Ambientes ">
+                                            <i class="ace-icon fa fa-check bigger-110"></i>
+                                            Análise de Risco &nbsp
+                                        </a>*@
 
                                     </td>
                                 </tr>
@@ -254,6 +260,8 @@
     <script src="~/Scripts/Custom/Alocacao/Novo.js"></script>
     <script src="~/Scripts/Custom/AtividadeAlocada/Novo.js"></script>
     <script src="~/Scripts/Custom/Exposicao/Novo.js"></script>
+    <script src="~/Scripts/Custom/AnaliseRisco/Novo.js"></script>
+
 }
 
 

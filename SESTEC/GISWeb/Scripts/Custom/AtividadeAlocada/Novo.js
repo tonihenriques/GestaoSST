@@ -17,7 +17,7 @@ function SalvarAtividadeEstabelecimento(Acao, idAtividadeEstabelecimento, idAloc
         }, function (partial) {
             $('.page-content-area').ace_ajax('stopLoading', true);
             $(".LoadingLayout").hide();
-            alert("Item salvo!")
+            alert("Item salvo!");
         }       
     );
     
@@ -45,7 +45,6 @@ function SalvarAnaliseRisco(Acao, idAtividadeEstabelecimento, idAlocacao,bemEsta
 
 
 }
-
 
 
 
