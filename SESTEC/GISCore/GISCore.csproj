@@ -49,6 +49,8 @@
     <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -80,6 +82,7 @@
     <Compile Include="Business\Abstract\IMedidasDeControleBusiness.cs" />
     <Compile Include="Business\Abstract\IPossiveisDanosBusiness.cs" />
     <Compile Include="Business\Abstract\ITipoDeRiscoBusiness.cs" />
+    <Compile Include="Business\Abstract\IUsuarioBusiness.cs" />
     <Compile Include="Business\Concrete\AnaliseRiscoBusiness.cs" />
     <Compile Include="Business\Concrete\PerigoPotencialBusiness.cs" />
     <Compile Include="Business\Concrete\ExposicaoBusiness.cs" />
@@ -106,30 +109,18 @@
     <Compile Include="Business\Concrete\EstabelecimentoAmbienteBusiness.cs" />
     <Compile Include="Business\Concrete\EstabelecimentoBusiness.cs" />
     <Compile Include="Business\Abstract\IFuncaoBusiness.cs" />
+    <Compile Include="Business\Concrete\UsuarioBusiness.cs" />
+    <Compile Include="Business\Concrete\UsuarioPerfisMenusViewModel.cs" />
+    <Compile Include="Connected Services\WCF_Suporte\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="DI\GISNinjectModule.cs" />
-    <Compile Include="Migrations\201903031134424_v_01.cs" />
-    <Compile Include="Migrations\201903031134424_v_01.Designer.cs">
-      <DependentUpon>201903031134424_v_01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903050244293_v_02.cs" />
-    <Compile Include="Migrations\201903050244293_v_02.Designer.cs">
-      <DependentUpon>201903050244293_v_02.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903120037398_v_06.cs" />
-    <Compile Include="Migrations\201903120037398_v_06.Designer.cs">
-      <DependentUpon>201903120037398_v_06.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903130104406_v_07.cs" />
-    <Compile Include="Migrations\201903130104406_v_07.Designer.cs">
-      <DependentUpon>201903130104406_v_07.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903131533106_v_08.cs" />
-    <Compile Include="Migrations\201903131533106_v_08.Designer.cs">
-      <DependentUpon>201903131533106_v_08.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903160047074_insereImagenEmpregado.cs" />
-    <Compile Include="Migrations\201903160047074_insereImagenEmpregado.Designer.cs">
-      <DependentUpon>201903160047074_insereImagenEmpregado.cs</DependentUpon>
+    <Compile Include="Infrastructure\Utils\Extensions.cs" />
+    <Compile Include="Migrations\201903161902306_j1.cs" />
+    <Compile Include="Migrations\201903161902306_j1.Designer.cs">
+      <DependentUpon>201903161902306_j1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,26 +141,40 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\WCF_Suporte\Suporte.wsdl" />
+    <None Include="Connected Services\WCF_Suporte\Suporte.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\WCF_Suporte\Suporte1.wsdl" />
+    <None Include="Connected Services\WCF_Suporte\Suporte1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903031134424_v_01.resx">
-      <DependentUpon>201903031134424_v_01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903050244293_v_02.resx">
-      <DependentUpon>201903050244293_v_02.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903120037398_v_06.resx">
-      <DependentUpon>201903120037398_v_06.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903130104406_v_07.resx">
-      <DependentUpon>201903130104406_v_07.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903131533106_v_08.resx">
-      <DependentUpon>201903131533106_v_08.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903160047074_insereImagenEmpregado.resx">
-      <DependentUpon>201903160047074_insereImagenEmpregado.cs</DependentUpon>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\WCF_Suporte\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WCF_Suporte\Suporte.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WCF_Suporte\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WCF_Suporte\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\WCF_Suporte\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903161902306_j1.resx">
+      <DependentUpon>201903161902306_j1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -93,6 +93,7 @@
     <Compile Include="DTO\AnaliseRisco\AnaliseRiscosViewModel.cs" />
     <Compile Include="DTO\AtividadesAlocada\AtividadesAlocadasViewModel.cs" />
     <Compile Include="DTO\Conta\AutenticacaoModel.cs" />
+    <Compile Include="DTO\Conta\NovaSenhaViewModel.cs" />
     <Compile Include="DTO\Contrato\ContratoViewModel.cs" />
     <Compile Include="DTO\Departamento\CadastroViewModel.cs" />
     <Compile Include="DTO\Menu\PerfilMenuViewModel.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Entidades\PossiveisDanos.cs" />
     <Compile Include="Entidades\Rel_AtivEstabTipoRisco.cs" />
     <Compile Include="Entidades\TipoDeRisco.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Enums\ETipoPlanoAcao.cs" />
     <Compile Include="Enums\EControle.cs" />
     <Compile Include="Enums\ESeveridadeSeg.cs" />

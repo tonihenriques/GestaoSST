@@ -12,6 +12,8 @@ using System.Web.Mvc;
 
 namespace GISWeb.Controllers
 {
+
+    [Autorizador]
     public class EmpresaController : Controller
     {
 
