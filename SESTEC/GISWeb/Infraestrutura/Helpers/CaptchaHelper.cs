@@ -1,25 +1,18 @@
-﻿//using BotDetect.Web.UI.Mvc;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
+﻿using BotDetect.Web.Mvc;
 
-//namespace GISWeb.Infraestrutura.Helpers
-//{
-//    public static class CaptchaHelper
-//    {
-//        public static MvcCaptcha GetLoginCaptcha()
-//        {
-//            // create the control instance
-//            MvcCaptcha loginCaptcha = new MvcCaptcha("LoginCaptcha");
 
-//            // set up client-side processing of the Captcha code input textbox
-//            loginCaptcha.UserInputClientID = "CaptchaCode";
+namespace GISWeb.Infraestrutura.Helpers
+{
+    public class CaptchaHelper
+    {
+        public static MvcCaptcha GetLoginCaptcha()
+        {
+            MvcCaptcha loginCaptcha = new MvcCaptcha("LoginCaptcha");
+            loginCaptcha.UserInputID = "CaptchaCode";
+            loginCaptcha.ImageSize = new System.Drawing.Size(255, 50);
 
-//            // Captcha settings
-//            loginCaptcha.ImageSize = new System.Drawing.Size(255, 50);
+            return loginCaptcha;
+        }
 
-//            return loginCaptcha;
-//        }
-//    }
-//}
+    }
+}

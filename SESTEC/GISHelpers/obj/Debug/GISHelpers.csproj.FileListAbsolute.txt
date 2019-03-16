@@ -44,3 +44,10 @@ C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\G
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CopyComplete
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.dll
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.pdb
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\bin\Debug\GISHelpers.dll
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\bin\Debug\GISHelpers.pdb
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\bin\Debug\Ionic.Zip.dll
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CoreCompileInputs.cache
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CopyComplete
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.dll
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.pdb

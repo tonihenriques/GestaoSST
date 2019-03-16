@@ -1,69 +1,69 @@
-﻿<div class="row">
-    <div class="col-sm-12">
+﻿@using GISCore.Infrastructure.Utils
 
-        @if (TempData["MensagemErro"] != null && !string.IsNullOrEmpty(TempData["MensagemErro"].ToString()))
-    {
-        <div class="alert alert-danger">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
+@if (!string.IsNullOrWhiteSpace(Extensions.RecuperaCookie("MensagemSucesso")))
+{
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
 
-            <strong>
-                <i class="ace-icon fa fa-times"></i>
-                Erro!
-            </strong>
+        <strong>
+            <i class="ace-icon fa fa-check-circle"></i>
+            Sucesso!
+        </strong>
 
-            @TempData["MensagemErro"].ToString()
-            <br>
-        </div>
+        @Html.Raw(Extensions.RecuperaCookie("MensagemSucesso", true))
+        <br />
+    </div>
 }
 
-        @if (TempData["MensagemAlerta"] != null && !string.IsNullOrEmpty(TempData["MensagemAlerta"].ToString()))
-    {
-        <div class="alert alert-warning">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
-            <strong>Alerta!</strong>
+@if (!string.IsNullOrWhiteSpace(Extensions.RecuperaCookie("MensagemErro")))
+{
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
 
-            @TempData["MensagemAlerta"].ToString()
-            <br>
-        </div>
+        <strong>
+            <i class="ace-icon fa fa-times-circle"></i>
+            Oops! Ocorreu algum problema!
+        </strong>
+
+        @Html.Raw(Extensions.RecuperaCookie("MensagemErro", true))
+        <br />
+    </div>
 }
 
-        @if (TempData["MensagemSucesso"] != null && !string.IsNullOrEmpty(TempData["MensagemSucesso"].ToString()))
-    {
-        <div class="alert alert-block alert-success">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
+@if (!string.IsNullOrWhiteSpace(Extensions.RecuperaCookie("MensagemAlerta")))
+{
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
 
-            <p>
-                <strong>
-                    <i class="ace-icon fa fa-check"></i>
-                    Sucesso!
-                </strong>
-                @TempData["MensagemSucesso"].ToString()
-            </p>
+        <strong>
+            <i class="ace-icon fa fa-exclamation-circle"></i>
+            Alerta!
+        </strong>
 
-        </div>
+        @Html.Raw(Extensions.RecuperaCookie("MensagemAlerta", true))
+        <br />
+    </div>
 }
 
-      
+@if (!string.IsNullOrWhiteSpace(Extensions.RecuperaCookie("MensagemInformacao")))
+{
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">
+            <i class="ace-icon fa fa-times"></i>
+        </button>
 
-        @if (TempData["MensagemInfo"] != null && !string.IsNullOrEmpty(TempData["MensagemInfo"].ToString()))
-    {
-        <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert">
-                <i class="ace-icon fa fa-times"></i>
-            </button>
-            <strong>Dica!</strong>
+        <strong>
+            <i class="ace-icon fa fa-info-circle"></i>
+            Mensagem!
+        </strong>
 
-            @TempData["MensagemInfo"].ToString()
-            <br>
-        </div>
+        @Html.Raw(Extensions.RecuperaCookie("MensagemInformacao", true))
+        <br />
+    </div>
 }
-
-    </div><!-- /.col -->
-
-</div>

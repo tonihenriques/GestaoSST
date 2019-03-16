@@ -1,22 +1,18 @@
-﻿//using GISModel.DTO.Conta;
-//using GISModel.Entidades;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
+﻿using GISModel.DTO.Conta;
+using GISModel.Entidades;
 
-//namespace GISWeb.Infraestrutura.Provider.Abstract
-//{
-//    public interface ICustomAuthorizationProvider
-//    {
+namespace GISWeb.Infraestrutura.Provider.Abstract
+{
+    public interface ICustomAuthorizationProvider
+    {
 
-//        //Usuario UsuarioAutenticado { get; }
+        Usuario UsuarioAutenticado { get; }
 
-//        bool EstaAutenticado { get; }
+        bool EstaAutenticado { get; }
 
-//        void Logar(AutenticacaoModel autenticacaoModel);
+        void Logar(AutenticacaoModel autenticacaoModel);
 
-//        void Deslogar();
+        void Deslogar();
 
-//    }
-//}
+    }
+}

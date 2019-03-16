@@ -1,11 +1,9 @@
 ﻿using GISCore.DI;
-//using GISWeb.Infraestrutura.Provider.Abstract;
-//using GISWeb.Infraestrutura.Provider.Concrete;
+using GISWeb.Infraestrutura.Provider.Abstract;
+using GISWeb.Infraestrutura.Provider.Concrete;
 using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GISWeb.Infraestrutura.DependencyResolver
@@ -32,7 +30,7 @@ namespace GISWeb.Infraestrutura.DependencyResolver
 
         private void Addbindings()
         {
-            //kernel.bind<icustomauthorizationprovider>().to<customauthorizationprovider>();
+            Kernel.Bind<ICustomAuthorizationProvider>().To<CustomAuthorizationProvider>();
         }
     }
 }

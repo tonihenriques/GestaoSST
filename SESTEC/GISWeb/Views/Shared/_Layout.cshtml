@@ -100,17 +100,14 @@
 
                 @if (ViewBag.OcultarMenus == null || !ViewBag.OcultarMenus)
                 {
-                    @* ############################# Breadcrumbs - semicabeçalho *@
                     <div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs" style="height: 45px">
                         <script type="text/javascript">
                             try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
                         </script>
 
-                        @* ####################### Informações do Módulo *@
                         <ul class="breadcrumb">
                             <li>
                                 <p style="margin: 0 0 0;">
-                                    @* ################################ Ícone característico do módulo *@
                                     <i class="ace-icon fa fa-flash orange home-icon"></i>
 
                                     <span style="font-size: 19px; color: #777; font-weight: 700">@System.Configuration.ConfigurationManager.AppSettings["Web:NomeModulo"]</span>
@@ -119,14 +116,12 @@
                                     <span style="font-size: 10px; color: #777; font-weight: 500">@System.Configuration.ConfigurationManager.AppSettings["Web:NomeCompletoModulo"]</span>
                                 </p>
                             </li>
-
                         </ul>
 
                         <ul class="LoadingLayout" style="float: right; list-style: none; margin-top: 3px; display: none;">
                             <li>
                                 <span class="labelLoadingLayout" style="font-size: 11px;">Aguarde!</span>
                                 &nbsp;&nbsp;
-                                @*<img class="imgLoading" src="~/Content/Images/ajax-loading.GIF" />*@
                                 <i id="imgLoadingLayout" style="margin-top: 6px;" class="ace-icon fa fa-spinner fa-spin blue bigger-125"></i>
                             </li>
                         </ul>
@@ -135,38 +130,21 @@
                 }
 
                 <div class="page-content">
-                    <div class="row">
-                        <div class="col-xs-12">
-
-                            @RenderSection("Sliders", required: false)
-
-                            
-
-                            @RenderBody()
-
-                        </div>
-                    </div>
-                </div>
-
-
-                @*<div class="main-content">
-                        <div class="main-content-inner">
-
-                            <div class="page-content">
+                    <div class="page-content-area" data-ajax-content="true">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @{
+                                    Html.RenderPartial("_MensagensDeRetorno");
+                                }
 
                                 @RenderSection("Sliders", required: false)
 
-                                <div class="page-content-area" data-ajax-content="true">
-
-                                    @RenderBody()
-
-                                </div><!-- /.page-content-area -->
+                                @RenderBody()
 
                             </div>
                         </div>
-                    </div>*@
-
-
+                    </div>
+                </div>
 
             </div>
         </div>

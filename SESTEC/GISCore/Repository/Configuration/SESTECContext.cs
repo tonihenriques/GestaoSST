@@ -1,10 +1,5 @@
 ﻿using GISModel.Entidades;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GISCore.Repository.Configuration
 {
@@ -62,25 +57,8 @@ namespace GISCore.Repository.Configuration
         public DbSet<Exposicao> Exposicao { get; set; }
 
         public DbSet<PerigoPotencial> PerigoPotencial { get; set; }
-       
-        
-        //public DbSet<Alocar> Alocar { get; set; }
 
-
-        //public DbSet<AtividadeRiscos> AtividadeRiscos { get; set; }
-
-
-        //public DbSet<REL_TipoRiscoAmbiente> REL_TipoRiscoAmbiente { get; set; }      
-
-
-        //public DbSet<CNAE> CNAE { get; set; }
-
-
-
-        //public DbSet<AlocacaoAtividades> AlocacaoAtividades { get; set; }
-
-        //public DbSet<MedidasControleRiscoFuncao> MedidasControleRiscoFuncao { get; set; }
-
+        public DbSet<Usuario> Usuario { get; set; }
 
     }
 }
