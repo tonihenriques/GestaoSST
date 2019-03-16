@@ -187,7 +187,8 @@ namespace GISWeb.Controllers
                                                                   Empregado = new Empregado()
                                                                   {
                                                                       Nome = Emp.Nome,
-                                                                      CPF= Emp.CPF
+                                                                      CPF= Emp.CPF,
+                                                                      Imagem = Emp.Imagem
                                                                       
 
                                                                   },

@@ -392,3 +392,4 @@ C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISCore\obj\Debug\GISC
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISCore\obj\Debug\GISCore.Migrations.v_06.resources
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISCore\obj\Debug\GISCore.Migrations.v_07.resources
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISCore\obj\Debug\GISCore.Migrations.v_08.resources
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\SESTEC\GISCore\obj\Debug\GISCore.Migrations.insereImagenEmpregado.resources

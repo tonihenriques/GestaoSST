@@ -127,6 +127,10 @@
     <Compile Include="Migrations\201903131533106_v_08.Designer.cs">
       <DependentUpon>201903131533106_v_08.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903160047074_insereImagenEmpregado.cs" />
+    <Compile Include="Migrations\201903160047074_insereImagenEmpregado.Designer.cs">
+      <DependentUpon>201903160047074_insereImagenEmpregado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\IBaseRepository.cs" />
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131533106_v_08.resx">
       <DependentUpon>201903131533106_v_08.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903160047074_insereImagenEmpregado.resx">
+      <DependentUpon>201903160047074_insereImagenEmpregado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
