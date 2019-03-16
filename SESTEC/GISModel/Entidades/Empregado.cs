@@ -25,7 +25,7 @@ namespace GISModel.Entidades
         [Required(ErrorMessage = "O nome é obrigatório")]
         public string Nome { get; set; }
 
-        public string Imagem { get; set; }
+        //public string Imagem { get; set; }
 
         //[Required(ErrorMessage = "O sexo é obrigatório")]
         //public Sexo? Sexo { get; set; }
