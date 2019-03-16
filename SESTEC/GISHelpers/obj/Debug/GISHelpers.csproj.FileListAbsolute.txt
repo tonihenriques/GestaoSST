@@ -51,3 +51,4 @@ C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GIS
 C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CopyComplete
 C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.dll
 C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.pdb
+C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csprojAssemblyReference.cache
