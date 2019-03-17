@@ -72,12 +72,12 @@
                         {
                             @Html.AntiForgeryToken()
                             <tr>
-                                    <td>
+                                <td>
 
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
-                                                <div class="text">Atividade:</div> 
+                                                <div class="text">Atividade:</div>
                                                 <div class="col-xs-12 col-sm-12">
                                                     @item.DescricaoAtividade
                                                     <input type="hidden" name="AtivEstabID" id="AtivEstabID" value=@item.IDAtividadeEstabelecimento />
@@ -85,7 +85,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    
+
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
                                                 <div class="text">Riscos:</div>
@@ -94,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    
+
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
                                                 <div class="text">Possíveis Danos:</div>
@@ -103,9 +103,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div><br/>
+                                    </div><br />
 
-                                
+
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-6">
                                             @{
@@ -166,7 +166,7 @@
                                             </div>
 
                                         </div>
-                                    
+
                                         <div class="col-xs-12 col-sm-6">
 
                                             <div class="form-group">
@@ -223,29 +223,33 @@
                                             </div>
                                         </div>
                                     </div>
-                               
-                               
 
-                                  @{
-                                  
+
+
+                                    @{
+
 
                                         string PossuiOMenu4 = string.Empty;
                                         if (item.AlocaAtividade)
                                         {
                                             PossuiOMenu4 = "disabled";
                                         }
-                                   }
-                                   <br/>
+                                    }
+                                    <br />
+                                    
+                                        <div class="row">
+                                            <div class="col-xs-8 col-sm-2 col-lg-12">
+                                                <button type="submit" class="btn btn-primary btn-lg btn-block btn-responsive" id="btnSalvar" @PossuiOMenu4>
+                                                    @*<button class="btn btn-info" id="btnSalvar" type="submit" @PossuiOMenu4>*@
+                                                    <i class="ace-icon fa fa-check bigger-55"></i>
+                                                    Salvar
+                                                </button>
+                                            </div>
+                                        </div>
+                                   
 
-                                    <div class="col-xs-12 col-sm-4">
-                                        <button class="btn btn-info" id="btnSalvar" type="submit" @PossuiOMenu4>
-                                            <i class="ace-icon fa fa-check bigger-55"></i>
-                                            Salvar
-                                        </button>
-                                    </div>
-                                
 
-                            </tr>
+</tr>
 
 
                         }
