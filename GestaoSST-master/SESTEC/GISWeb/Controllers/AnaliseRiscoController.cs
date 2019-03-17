@@ -211,7 +211,7 @@ namespace GISWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SalvarAnaliseRisco(AnaliseRisco oAnaliseRisco, bool ConhecID,bool BemEstarID )
+        public ActionResult SalvarAnaliseRisco(AnaliseRisco oAnaliseRisco, string AtivEstabID,string idATivAlocada, bool ConhecID,bool BemEstarID )
         {
 
             if (ModelState.IsValid)
@@ -219,17 +219,17 @@ namespace GISWeb.Controllers
                 try
                 {
                     
-                    //oAnaliseRisco.IDAtividadesDoEstabelecimento = AtivEstabID;
+                    oAnaliseRisco.IDAtividadesDoEstabelecimento = AtivEstabID;
                     oAnaliseRisco.Conhecimento = ConhecID;
                     oAnaliseRisco.BemEstar = BemEstarID;
-                    //oAnaliseRisco.IDAtividadeAlocada = idATivAlocada;
+                    oAnaliseRisco.IDAtividadeAlocada = idATivAlocada;
 
                     //oAnaliseRisco.BemEstar = oAnaliseRiscosViewModel.BemEstar;
                     //oAnaliseRisco.Conhecimento = oAnaliseRiscosViewModel.Conhecimento;
 
                     AnaliseRiscoBusiness.Inserir(oAnaliseRisco);
 
-                    TempData["MensagemSucesso"] = "Analise de Risco cadastrada com sucesso!.";
+                    TempData["MensagemSucesso"] = "O empregado foi admitido com sucesso.";
 
                     //var iAdmin = oAdmissao.IDAdmissao;
 
