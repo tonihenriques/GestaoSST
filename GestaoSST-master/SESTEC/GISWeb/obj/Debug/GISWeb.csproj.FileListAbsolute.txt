@@ -580,3 +580,7 @@ C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWe
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWeb\obj\Debug\GISWeb.csproj.CopyComplete
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWeb\obj\Debug\GISWeb.dll
 C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWeb\obj\Debug\GISWeb.pdb
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWeb\bin\log4net.dll
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWeb\bin\Migrations.dll
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWeb\bin\log4net.xml
+C:\Users\Tonic\OneDrive\Documentos\GiHub\GestaoSST\GestaoSST-master\SESTEC\GISWeb\bin\GISHelpers.dll.config

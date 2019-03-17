@@ -29,6 +29,10 @@ namespace GISModel.DTO.AnaliseRisco
 
         public string PossiveisDanos { get; set; }
 
+        public string IDEventoPerigoso { get; set; }
+
+        public string IDPerigoPotencial { get; set; }
+
         //public string idControle { get; set; }
 
         //public Enum EClasseDoRisco { get; set; }
