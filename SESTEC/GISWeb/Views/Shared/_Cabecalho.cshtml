@@ -91,11 +91,11 @@
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                             @if (string.IsNullOrWhiteSpace(ViewBag.NomeUsuario))
                             {
-                                <img class="nav-user-photo" src="@Url.Action("FotoPerfil", "Conta")" />
+                                <img class="nav-user-photo" src="@Url.Action("FotoPerfil", "Account")" />
                             }
                             else
                             {
-                                <img class="nav-user-photo" src="@Url.Action("FotoPerfil", "Conta", new { login = ViewBag.MatriculaUsuario })" />
+                                <img class="nav-user-photo" src="@Url.Action("FotoPerfil", "Account", new { login = ViewBag.MatriculaUsuario })" />
                             }
                             <span class="user-info">
                                 <small>Bem vindo,</small>

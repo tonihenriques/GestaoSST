@@ -69,7 +69,8 @@ namespace GISWeb.Controllers
                     if (Usuario.IDUsuario != null && Usuario.IDUsuario.Equals("redirect"))
                         bRedirect = true;
 
-                    Usuario.UsuarioInclusao = CustomAuthorizationProvider.UsuarioAutenticado.Login;
+                    //Usuario.UsuarioInclusao = CustomAuthorizationProvider.UsuarioAutenticado.Login;
+                    Usuario.UsuarioInclusao = "Teste";
                     UsuarioBusiness.Inserir(Usuario);
 
                     if (bRedirect)

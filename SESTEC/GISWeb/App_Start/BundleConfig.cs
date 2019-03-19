@@ -33,12 +33,14 @@ namespace GISWeb.App_Start
                         "~/Scripts/Ace/jQ/jquery-ui.custom.js",
                         "~/Scripts/Ace/jQ/jquery.ui.touch-punch.js",
                         "~/Scripts/Ace/jQ/jquery.gritter.js",
+                        "~/Scripts/Ace/chosen.jquery.js",
                         "~/Scripts/Pace/pace.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/ace_js_extra").Include(
                         "~/Scripts/Ace/ace-extra.js"));
 
             bundles.Add(new StyleBundle("~/bundles/ace_css_master").Include(
+                        "~/Content/Ace/Chosen/chosen.min.css",
                         "~/Content/Ace/css/bootstrap.css",
                         "~/Content/Ace/FontAwesome/css/font-awesome.css",
                         "~/Content/Ace/css/jquery-ui.custom.css",

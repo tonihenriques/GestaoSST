@@ -155,6 +155,8 @@
     <Content Include="Content\Ace\Chosen\chosen-sprite.png" />
     <Content Include="Content\Ace\Chosen\chosen.min.css" />
     <Content Include="Content\Croppie\croppie.css" />
+    <Content Include="Images\CIPA-logo.png" />
+    <Content Include="Images\favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Ace\FontAwesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\Ace\FontAwesome\fonts\fontawesome-webfont.ttf" />
@@ -234,6 +236,7 @@
     <Content Include="Scripts\Ace\src\elements.wizard.js" />
     <Content Include="Scripts\Ace\src\elements.wysiwyg.js" />
     <Content Include="Scripts\Custom\Account\custom-login.js" />
+    <Content Include="Scripts\Custom\Account\NovaSenha.js" />
     <Content Include="Scripts\Custom\Admissao\Edicao.js" />
     <Content Include="Scripts\Custom\Admissao\ListagemEmpresas.js" />
     <Content Include="Scripts\Custom\Admissao\ListagemEmpregado.js" />
@@ -531,6 +534,7 @@
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Novo.cshtml" />
     <Content Include="Views\Usuario\Edicao.cshtml" />
+    <Content Include="Views\Account\DefinirNovaSenha.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

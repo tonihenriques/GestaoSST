@@ -10,7 +10,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link href="~/Content/Images/favicon.ico" rel="shortcut icon" />
+    <link href="~/Images/favicon.ico" rel="shortcut icon" />
     <title>@System.Configuration.ConfigurationManager.AppSettings["Web:NomeModulo"] - @ViewBag.Title</title>
 
     @{
@@ -26,46 +26,18 @@
     @Scripts.Render("~/bundles/modernizr")
 
 
-    <link href="~/Content/Ace/Chosen/chosen.min.css" rel="stylesheet" />
 
-
-    <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="~/Content/Ace/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/Content/Ace/css/font-awesome.css" />
-
-    <!-- page specific plugin styles -->
-    <link rel="stylesheet" href="~/Components/jquery.gritter/css/jquery.gritter.css" />
-
-
-
-
-    <!-- text fonts -->
-    <link rel="stylesheet" href="~/Content/Ace/css/ace-fonts.css" />
-
-    <!-- ace styles -->
-    <link rel="stylesheet" href="~/Content/Ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
-
-    @*@Scripts.Render("~/bundles/modernizr")*@
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="~/Content/Ace/css/ace-part2.css" class="ace-main-stylesheet" />
     <![endif]-->
-    <link rel="stylesheet" href="~/Content/Ace/css/ace-skins.css" />
-    <link rel="stylesheet" href="~/Content/Ace/css/ace-rtl.css" />
-
     <!--[if lte IE 9]>
       <link rel="stylesheet" href="~/Content/Ace/css/ace-ie.css" />
     <![endif]-->
     <!-- inline styles related to this page -->
     <!-- ace settings handler -->
     <script src="~/Scripts/Ace/ace-extra.js"></script>
-    <link rel="stylesheet" href="~/components/chosen/chosen.css" />
 
-    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
-    <!--[if lte IE 8]>
-    <script src="~/Components/html5shiv/dist/html5shiv.min.js"></script>
-    <script src="~/Components/respond/dest/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body class="no-skin">
@@ -160,67 +132,18 @@
     </div>
 
     <!--[if !IE]> -->
-    <script src="~/Components/jquery/dist/jquery.js"></script>
+    
     <!-- <![endif]-->
     <!--[if IE]>
         <script src="~/Components/jquery.1x/dist/jquery.js"></script>
     <![endif]-->
 
-    <script src="~/Components/bootstrap/dist/js/bootstrap.js"></script>
-
+    
     <!-- page specific plugin scripts -->
 
-    <script src="~/Components/jquery.gritter/js/jquery.gritter.js"></script>
-    <script src="~/Components/_mod/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    
 
     <!-- ace scripts -->
-
-    <script src="~/Scripts/Ace/src/elements.scroller.js"></script>
-    <script src="~/Scripts/Ace/src/elements.colorpicker.js"></script>
-    <script src="~/Scripts/Ace/src/elements.fileinput.js"></script>
-    <script src="~/Scripts/Ace/src/elements.typeahead.js"></script>
-    <script src="~/Scripts/Ace/src/elements.wysiwyg.js"></script>
-    <script src="~/Scripts/Ace/src/elements.spinner.js"></script>
-    <script src="~/Scripts/Ace/src/elements.treeview.js"></script>
-    <script src="~/Scripts/Ace/src/elements.wizard.js"></script>
-    <script src="~/Scripts/Ace/src/elements.aside.js"></script>
-    <script src="~/Scripts/Ace/src/ace.js"></script>
-    <script src="~/Scripts/Ace/src/ace.basics.js"></script>
-    <script src="~/Scripts/Ace/src/ace.scrolltop.js"></script>
-    <script src="~/Scripts/Ace/src/ace.ajax-content.js"></script>
-    <script src="~/Scripts/Ace/src/ace.touch-drag.js"></script>
-    <script src="~/Scripts/Ace/src/ace.sidebar.js"></script>
-    <script src="~/Scripts/Ace/src/ace.sidebar-scroll-1.js"></script>
-    <script src="~/Scripts/Ace/src/ace.submenu-hover.js"></script>
-    <script src="~/Scripts/Ace/src/ace.widget-box.js"></script>
-    <script src="~/Scripts/Ace/src/ace.settings.js"></script>
-    <script src="~/Scripts/Ace/src/ace.settings-rtl.js"></script>
-    <script src="~/Scripts/Ace/src/ace.settings-skin.js"></script>
-    <script src="~/Scripts/Ace/src/ace.widget-on-reload.js"></script>
-    <script src="~/Scripts/Ace/src/ace.searchbox-autocomplete.js"></script>
-
-    <link rel="stylesheet" href="~/Content/Ace/css/ace.onpage-help.css" />
-    <link rel="stylesheet" href="~/Content/Ace/css/themes/sunburst.css" />
-    <link rel="stylesheet" href="~/components/chosen/chosen.css" />
-
-    <script src="~/Components/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/Components/jquery-validation/dist/jquery.validate.unobtrusive.js"></script>
-    <script src="~/Components/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
-
-    <script src="~/Scripts/Custom/custom-functions.js"></script>
-    <script src="~/Scripts/Custom/custom-master.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -285,6 +208,6 @@
 
     @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("Scripts", required: false)
-    <script src="~/Scripts/Ace/chosen.jquery.min.js"></script>
+    
 </body>
 </html>

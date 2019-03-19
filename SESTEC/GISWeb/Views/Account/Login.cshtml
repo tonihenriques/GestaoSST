@@ -52,22 +52,6 @@
 </head>
 
 <body class="login-layout light-login">
-    @*<div id="navbar" class="navbar navbar-default navbar-fixed-top">
-            <script type="text/javascript">
-                try { ace.settings.check('navbar', 'fixed') } catch (e) { }
-            </script>
-
-            <div class="navbar-container" id="navbar-container">
-                <div class="navbar-header pull-left align-center">
-                    <a href="#" class="navbar-brand EmConstrucao">
-                        <small>
-                            @*<img src="~/Content/Images/Gedoc20_branco_150px_25px.png" />
-                            <span class="white">CEMIG</span>
-                        </small>
-                    </a>
-                </div>
-            </div>
-        </div>*@
 
     <div class="main-container" id="main-container">
         <div class="main-content">
@@ -77,7 +61,8 @@
 
                         <div class="center">
                             <h1 style="margin-bottom: 40px;">
-                                <i class="ace-icon fa fa-leaf green"></i>
+                                @*<i class="ace-icon fa fa-leaf green"></i>*@
+                                <img src="~/Images/CIPA-logo.png" width="52px" alt="Logo CIPA" />
                                 <span class="red">Gestão</span>
                                 <span class="grey" id="id-text2">SST</span>
                             </h1>
@@ -189,7 +174,7 @@
                                         Informe seu email de contato
                                     </p>
 
-                                    @using (Ajax.BeginForm("SolicitarAcesso", "Conta", null, new AjaxOptions
+                                    @using (Ajax.BeginForm("SolicitarAcesso", "Account", null, new AjaxOptions
                                     {
                                         HttpMethod = "POST",
                                         OnBegin = "OnBeginSolicicacaoAcesso",
@@ -210,7 +195,6 @@
                                             </label>
 
                                             <div class="clearfix">
-                                                @*<img id="loadingSolicitacaoConta" style="display: none; float: left; margin-top: 5px;" src="~/Content/Images/ajax-loading.GIF" />*@
                                                 <i id="loadingSolicitacaoConta" style="display: none; float: left; margin-top: 5px;" class="ace-icon fa fa-spinner fa-spin blue bigger-125"></i>
 
                                                 <button type="submit" class="width-35 pull-right btn btn-sm btn-danger">

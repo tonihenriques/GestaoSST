@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.DirectoryServices.AccountManagement;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.ServiceModel;
@@ -131,11 +133,11 @@ namespace GISCore.Business.Concrete
 
             if (usuario.TipoDeAcesso.Equals(TipoDeAcesso.AD))
             {
-                //EnviarEmailParaUsuarioRecemCriadoAD(usuario);
+                EnviarEmailParaUsuarioRecemCriadoAD(usuario);
             }
             else
             {
-                //EnviarEmailParaUsuarioRecemCriadoSistema(usuario);
+                EnviarEmailParaUsuarioRecemCriadoSistema(usuario);
             }
 
         }
@@ -176,7 +178,7 @@ namespace GISCore.Business.Concrete
             {
                 oUsuario.Senha = CreateHashFromPassword(novaSenhaViewModel.NovaSenha);
                 Alterar(oUsuario);
-                //EnviarEmailParaUsuarioSenhaAlterada(oUsuario);
+                EnviarEmailParaUsuarioSenhaAlterada(oUsuario);
             }
         }
 
@@ -192,233 +194,233 @@ namespace GISCore.Business.Concrete
                 }
             }
 
-            //EnviarEmailParaUsuarioSolicacaoAcesso(listaUsuarios[0]);
+            EnviarEmailParaUsuarioSolicacaoAcesso(listaUsuarios[0]);
         }
 
         #region E-mails
 
-        //private void EnviarEmailParaUsuarioSolicacaoAcesso(Usuario usuario)
-        //{
-        //    string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
-        //    string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
+        private void EnviarEmailParaUsuarioSolicacaoAcesso(Usuario usuario)
+        {
+            string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
+            string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
 
-        //    MailMessage mail = new MailMessage(sRemetente, usuario.Email);
+            MailMessage mail = new MailMessage(sRemetente, usuario.Email);
 
-        //    string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
-        //    if (PrimeiroNome.Contains(" "))
-        //        PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
+            string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
+            if (PrimeiroNome.Contains(" "))
+                PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
 
-        //    mail.Subject = PrimeiroNome + ", este é o link para redinir sua senha";
-        //    mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ".";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "<span style=\"color: #222;\">Redefina sua senha para começar novamente.";
-        //    mail.Body += "<br /><br />";
+            mail.Subject = PrimeiroNome + ", este é o link para redinir sua senha";
+            mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ".";
+            mail.Body += "<br /><br />";
+            mail.Body += "<span style=\"color: #222;\">Redefina sua senha para começar novamente.";
+            mail.Body += "<br /><br />";
 
-        //    string sLink = "http://localhost:26717/Conta/DefinirNovaSenha/" + WebUtility.UrlEncode(GISHelpers.Utils.Criptografador.Criptografar(usuario.UniqueKey + "#" + DateTime.Now.ToString("yyyyMMdd"), 1)).Replace("%", "_@");
+            string sLink = "http://localhost:26717/Conta/DefinirNovaSenha/" + WebUtility.UrlEncode(GISHelpers.Utils.Criptografador.Criptografar(usuario.IDUsuario + "#" + DateTime.Now.ToString("yyyyMMdd"), 1)).Replace("%", "_@");
 
-        //    mail.Body += "Para alterar sua senha do GiS, clique <a href=\"" + sLink + "\">aqui</a> ou cole o seguinte link no seu navegador.";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += sLink;
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "O link é válido por 24 horas, portanto, utilize-o imediatamente.";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "Obrigado por utilizar o GiS!<br />";
-        //    mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
-        //    mail.Body += "</span>";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "<span style=\"color: #aaa; font-size: 10pt; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
-        //    mail.Body += "</body></html>";
+            mail.Body += "Para alterar sua senha do GiS, clique <a href=\"" + sLink + "\">aqui</a> ou cole o seguinte link no seu navegador.";
+            mail.Body += "<br /><br />";
+            mail.Body += sLink;
+            mail.Body += "<br /><br />";
+            mail.Body += "O link é válido por 24 horas, portanto, utilize-o imediatamente.";
+            mail.Body += "<br /><br />";
+            mail.Body += "Obrigado por utilizar o GiS!<br />";
+            mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
+            mail.Body += "</span>";
+            mail.Body += "<br /><br />";
+            mail.Body += "<span style=\"color: #aaa; font-size: 10pt; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
+            mail.Body += "</body></html>";
 
-        //    mail.IsBodyHtml = true;
-        //    mail.BodyEncoding = Encoding.UTF8;
-
-
-        //    SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
-
-        //    smtpClient.Credentials = new System.Net.NetworkCredential()
-        //    {
-        //        UserName = ConfigurationManager.AppSettings["Web:Remetente"],
-        //        Password = "sesmtajt"
-        //    };
-
-        //    smtpClient.EnableSsl = true;
-        //    System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
-        //            System.Security.Cryptography.X509Certificates.X509Certificate certificate,
-        //            System.Security.Cryptography.X509Certificates.X509Chain chain,
-        //            System.Net.Security.SslPolicyErrors sslPolicyErrors)
-        //    {
-        //        return true;
-        //    };
-
-        //    smtpClient.Send(mail);
-
-        //}
-
-        //private void EnviarEmailParaUsuarioSenhaAlterada(Usuario usuario)
-        //{
-        //    string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
-        //    string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
-
-        //    MailMessage mail = new MailMessage(sRemetente, usuario.Email);
-
-        //    string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
-        //    if (PrimeiroNome.Contains(" "))
-        //        PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
-
-        //    mail.Subject = PrimeiroNome + ", sua senha foi redefinida.";
-
-        //    mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ".";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "<span style=\"color: #222;\">Você redefiniu sua senha do GiS.";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "Obrigado por utilizar o GiS!<br />";
-        //    mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
-        //    mail.Body += "</span>";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "<span style=\"color: #aaa; font-size: 10pt; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
-        //    mail.Body += "</body></html>";
-
-        //    mail.IsBodyHtml = true;
-        //    mail.BodyEncoding = Encoding.UTF8;
+            mail.IsBodyHtml = true;
+            mail.BodyEncoding = Encoding.UTF8;
 
 
-        //    SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
+            SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
 
-        //    smtpClient.Credentials = new System.Net.NetworkCredential()
-        //    {
-        //        UserName = ConfigurationManager.AppSettings["Web:Remetente"],
-        //        Password = "sesmtajt"
-        //    };
+            smtpClient.Credentials = new System.Net.NetworkCredential()
+            {
+                UserName = ConfigurationManager.AppSettings["Web:Remetente"],
+                Password = "sesmtajt"
+            };
 
-        //    smtpClient.EnableSsl = true;
-        //    System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
-        //            System.Security.Cryptography.X509Certificates.X509Certificate certificate,
-        //            System.Security.Cryptography.X509Certificates.X509Chain chain,
-        //            System.Net.Security.SslPolicyErrors sslPolicyErrors)
-        //    {
-        //        return true;
-        //    };
+            smtpClient.EnableSsl = true;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
+                    System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true;
+            };
 
-        //    smtpClient.Send(mail);
+            smtpClient.Send(mail);
 
-        //}
+        }
 
-        //private void EnviarEmailParaUsuarioRecemCriadoSistema(Usuario usuario)
-        //{
-        //    string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
-        //    string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
+        private void EnviarEmailParaUsuarioSenhaAlterada(Usuario usuario)
+        {
+            string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
+            string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
 
-        //    MailMessage mail = new MailMessage(sRemetente, usuario.Email);
+            MailMessage mail = new MailMessage(sRemetente, usuario.Email);
 
-        //    string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
-        //    if (PrimeiroNome.Contains(" "))
-        //        PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
+            string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
+            if (PrimeiroNome.Contains(" "))
+                PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
 
-        //    mail.Subject = PrimeiroNome + ", seja bem-vindo!";
-        //    mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ";";
-        //    mail.Body += "<br /><br />";
+            mail.Subject = PrimeiroNome + ", sua senha foi redefinida.";
 
-        //    string NomeUsuarioInclusao = usuario.UsuarioInclusao;
-        //    Usuario uInclusao = Consulta.FirstOrDefault(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.Login.Equals(usuario.UsuarioInclusao));
-        //    if (uInclusao != null && !string.IsNullOrEmpty(uInclusao.Nome))
-        //        NomeUsuarioInclusao = uInclusao.Nome;
+            mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ".";
+            mail.Body += "<br /><br />";
+            mail.Body += "<span style=\"color: #222;\">Você redefiniu sua senha do GiS.";
+            mail.Body += "<br /><br />";
+            mail.Body += "Obrigado por utilizar o GiS!<br />";
+            mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
+            mail.Body += "</span>";
+            mail.Body += "<br /><br />";
+            mail.Body += "<span style=\"color: #aaa; font-size: 10pt; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
+            mail.Body += "</body></html>";
+
+            mail.IsBodyHtml = true;
+            mail.BodyEncoding = Encoding.UTF8;
 
 
-        //    string sLink = "http://localhost:26717/Conta/DefinirNovaSenha/" + WebUtility.UrlEncode(GISHelpers.Utils.Criptografador.Criptografar(usuario.UniqueKey + "#" + DateTime.Now.ToString("yyyyMMdd"), 1)).Replace("%", "_@");
+            SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
 
-        //    mail.Body += "Você foi cadastrado no sistema GiS - Gestão Inteligente da Segurança pelo " + GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(NomeUsuarioInclusao) + ".";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "Clique <a href=\"" + sLink + "\">aqui</a> para ativar sua conta ou cole o seguinte link no seu navegador.";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += sLink;
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "Obrigado por utilizar o GiS!<br />";
-        //    mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "<span style=\"color: #ccc; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
-        //    mail.Body += "</body></html>";
+            smtpClient.Credentials = new System.Net.NetworkCredential()
+            {
+                UserName = ConfigurationManager.AppSettings["Web:Remetente"],
+                Password = "sesmtajt"
+            };
 
-        //    mail.IsBodyHtml = true;
-        //    mail.BodyEncoding = Encoding.UTF8;
+            smtpClient.EnableSsl = true;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
+                    System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true;
+            };
 
-        //    SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
+            smtpClient.Send(mail);
 
-        //    smtpClient.Credentials = new System.Net.NetworkCredential()
-        //    {
-        //        UserName = ConfigurationManager.AppSettings["Web:Remetente"],
-        //        Password = "sesmtajt"
-        //    };
+        }
 
-        //    smtpClient.EnableSsl = true;
-        //    System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
-        //            System.Security.Cryptography.X509Certificates.X509Certificate certificate,
-        //            System.Security.Cryptography.X509Certificates.X509Chain chain,
-        //            System.Net.Security.SslPolicyErrors sslPolicyErrors)
-        //    {
-        //        return true;
-        //    };
+        private void EnviarEmailParaUsuarioRecemCriadoSistema(Usuario usuario)
+        {
+            string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
+            string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
 
-        //    smtpClient.Send(mail);
+            MailMessage mail = new MailMessage(sRemetente, usuario.Email);
 
-        //}
+            string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
+            if (PrimeiroNome.Contains(" "))
+                PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
 
-        //private void EnviarEmailParaUsuarioRecemCriadoAD(Usuario usuario)
-        //{
-        //    string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
-        //    string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
+            mail.Subject = PrimeiroNome + ", seja bem-vindo!";
+            mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ";";
+            mail.Body += "<br /><br />";
 
-        //    MailMessage mail = new MailMessage(sRemetente, usuario.Email);
+            string NomeUsuarioInclusao = usuario.UsuarioInclusao;
+            Usuario uInclusao = Consulta.FirstOrDefault(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.Login.Equals(usuario.UsuarioInclusao));
+            if (uInclusao != null && !string.IsNullOrEmpty(uInclusao.Nome))
+                NomeUsuarioInclusao = uInclusao.Nome;
 
-        //    string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
-        //    if (PrimeiroNome.Contains(" "))
-        //        PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
 
-        //    mail.Subject = PrimeiroNome + ", seja bem-vindo!";
-        //    mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ".";
-        //    mail.Body += "<br /><br />";
+            string sLink = "http://localhost:26717/Conta/DefinirNovaSenha/" + WebUtility.UrlEncode(GISHelpers.Utils.Criptografador.Criptografar(usuario.IDUsuario + "#" + DateTime.Now.ToString("yyyyMMdd"), 1)).Replace("%", "_@");
 
-        //    string NomeUsuarioInclusao = usuario.UsuarioInclusao;
-        //    Usuario uInclusao = Consulta.FirstOrDefault(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.Login.Equals(usuario.UsuarioInclusao));
-        //    if (uInclusao != null && !string.IsNullOrEmpty(uInclusao.Nome))
-        //        NomeUsuarioInclusao = uInclusao.Nome;
+            mail.Body += "Você foi cadastrado no sistema GiS - Gestão Inteligente da Segurança pelo " + GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(NomeUsuarioInclusao) + ".";
+            mail.Body += "<br /><br />";
+            mail.Body += "Clique <a href=\"" + sLink + "\">aqui</a> para ativar sua conta ou cole o seguinte link no seu navegador.";
+            mail.Body += "<br /><br />";
+            mail.Body += sLink;
+            mail.Body += "<br /><br />";
+            mail.Body += "Obrigado por utilizar o GiS!<br />";
+            mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
+            mail.Body += "<br /><br />";
+            mail.Body += "<span style=\"color: #ccc; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
+            mail.Body += "</body></html>";
 
-        //    string sLink = "http://localhost:26717/";
+            mail.IsBodyHtml = true;
+            mail.BodyEncoding = Encoding.UTF8;
 
-        //    mail.Body += "Você foi cadastrado no sistema GiS - Gestão Inteligente da Segurança pelo " + NomeUsuarioInclusao + ".";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "Clique <a href=\"" + sLink + "\">aqui</a> para acessar a sua conta ou cole o seguinte link no seu navegador.";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += sLink;
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "Obrigado por utilizar o GiS!<br />";
-        //    mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
-        //    mail.Body += "<br /><br />";
-        //    mail.Body += "<span style=\"color: #ccc; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
-        //    mail.Body += "</body></html>";
+            SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
 
-        //    mail.IsBodyHtml = true;
-        //    mail.BodyEncoding = Encoding.UTF8;
+            smtpClient.Credentials = new System.Net.NetworkCredential()
+            {
+                UserName = ConfigurationManager.AppSettings["Web:Remetente"],
+                Password = "sesmtajt"
+            };
 
-        //    SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
+            smtpClient.EnableSsl = true;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
+                    System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true;
+            };
 
-        //    smtpClient.Credentials = new System.Net.NetworkCredential()
-        //    {
-        //        UserName = ConfigurationManager.AppSettings["Web:Remetente"],
-        //        Password = "sesmtajt"
-        //    };
+            smtpClient.Send(mail);
 
-        //    smtpClient.EnableSsl = true;
-        //    System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
-        //            System.Security.Cryptography.X509Certificates.X509Certificate certificate,
-        //            System.Security.Cryptography.X509Certificates.X509Chain chain,
-        //            System.Net.Security.SslPolicyErrors sslPolicyErrors)
-        //    {
-        //        return true;
-        //    };
+        }
 
-        //    smtpClient.Send(mail);
+        private void EnviarEmailParaUsuarioRecemCriadoAD(Usuario usuario)
+        {
+            string sRemetente = ConfigurationManager.AppSettings["Web:Remetente"];
+            string sSMTP = ConfigurationManager.AppSettings["Web:SMTP"];
 
-        //}
+            MailMessage mail = new MailMessage(sRemetente, usuario.Email);
+
+            string PrimeiroNome = GISHelpers.Utils.Severino.PrimeiraMaiusculaTodasPalavras(usuario.Nome);
+            if (PrimeiroNome.Contains(" "))
+                PrimeiroNome = PrimeiroNome.Substring(0, PrimeiroNome.IndexOf(" "));
+
+            mail.Subject = PrimeiroNome + ", seja bem-vindo!";
+            mail.Body = "<html style=\"font-family: Verdana; font-size: 11pt;\"><body>Olá, " + PrimeiroNome + ".";
+            mail.Body += "<br /><br />";
+
+            string NomeUsuarioInclusao = usuario.UsuarioInclusao;
+            Usuario uInclusao = Consulta.FirstOrDefault(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.Login.Equals(usuario.UsuarioInclusao));
+            if (uInclusao != null && !string.IsNullOrEmpty(uInclusao.Nome))
+                NomeUsuarioInclusao = uInclusao.Nome;
+
+            string sLink = "http://localhost:26717/";
+
+            mail.Body += "Você foi cadastrado no sistema GiS - Gestão Inteligente da Segurança pelo " + NomeUsuarioInclusao + ".";
+            mail.Body += "<br /><br />";
+            mail.Body += "Clique <a href=\"" + sLink + "\">aqui</a> para acessar a sua conta ou cole o seguinte link no seu navegador.";
+            mail.Body += "<br /><br />";
+            mail.Body += sLink;
+            mail.Body += "<br /><br />";
+            mail.Body += "Obrigado por utilizar o GiS!<br />";
+            mail.Body += "<strong>Gestão Inteligente da Segurança</strong>";
+            mail.Body += "<br /><br />";
+            mail.Body += "<span style=\"color: #ccc; font-style: italic;\">Mensagem enviada automaticamente, favor não responder este email.</span>";
+            mail.Body += "</body></html>";
+
+            mail.IsBodyHtml = true;
+            mail.BodyEncoding = Encoding.UTF8;
+
+            SmtpClient smtpClient = new SmtpClient(sSMTP, 587);
+
+            smtpClient.Credentials = new System.Net.NetworkCredential()
+            {
+                UserName = ConfigurationManager.AppSettings["Web:Remetente"],
+                Password = "sesmtajt"
+            };
+
+            smtpClient.EnableSsl = true;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (object s,
+                    System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                    System.Security.Cryptography.X509Certificates.X509Chain chain,
+                    System.Net.Security.SslPolicyErrors sslPolicyErrors)
+            {
+                return true;
+            };
+
+            smtpClient.Send(mail);
+
+        }
 
         #endregion
 
