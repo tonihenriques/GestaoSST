@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Abstract\IAnaliseRiscoBusiness.cs" />
+    <Compile Include="Business\Abstract\IDocsPorAtividadeBusiness.cs" />
+    <Compile Include="Business\Abstract\IDocumentosPessoalBusiness .cs" />
     <Compile Include="Business\Abstract\IPerigoPotencialBusiness.cs" />
     <Compile Include="Business\Abstract\IExposicaoBusiness.cs" />
     <Compile Include="Business\Abstract\IPlanoDeAcaoBusiness.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="Business\Abstract\ITipoDeRiscoBusiness.cs" />
     <Compile Include="Business\Abstract\IUsuarioBusiness.cs" />
     <Compile Include="Business\Concrete\AnaliseRiscoBusiness.cs" />
+    <Compile Include="Business\Concrete\DocsPorAtividadeBusiness.cs" />
+    <Compile Include="Business\Concrete\DocumentosPessoalBusiness .cs" />
     <Compile Include="Business\Concrete\PerigoPotencialBusiness.cs" />
     <Compile Include="Business\Concrete\ExposicaoBusiness.cs" />
     <Compile Include="Business\Concrete\PlanoDeAcaoBusiness.cs" />
@@ -118,9 +122,13 @@
     </Compile>
     <Compile Include="DI\GISNinjectModule.cs" />
     <Compile Include="Infrastructure\Utils\Extensions.cs" />
-    <Compile Include="Migrations\201903161902306_j1.cs" />
-    <Compile Include="Migrations\201903161902306_j1.Designer.cs">
-      <DependentUpon>201903161902306_j1.cs</DependentUpon>
+    <Compile Include="Migrations\201904191051015_v01.cs" />
+    <Compile Include="Migrations\201904191051015_v01.Designer.cs">
+      <DependentUpon>201904191051015_v01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904191053081_v02.cs" />
+    <Compile Include="Migrations\201904191053081_v02.Designer.cs">
+      <DependentUpon>201904191053081_v02.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,8 +181,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903161902306_j1.resx">
-      <DependentUpon>201903161902306_j1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904191051015_v01.resx">
+      <DependentUpon>201904191051015_v01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904191053081_v02.resx">
+      <DependentUpon>201904191053081_v02.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
