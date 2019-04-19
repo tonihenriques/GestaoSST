@@ -12,8 +12,8 @@ namespace GISModel.Entidades
     public class Atividade: EntidadeBase
     {
         [Key]
-        public string IDAtividade { get; set; }
-
+        public string IDAtividade { get; set; }        
+        
         [Display(Name ="Descrição da Atividade")]
         public string Descricao { get; set; }
 

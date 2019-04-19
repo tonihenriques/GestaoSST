@@ -9,13 +9,16 @@ namespace GISModel.DTO.AnaliseRisco
     public class AnaliseRiscosViewModel
     {
 
+        public string IDAmissao { get; set; }
+
         public string DescricaoAtividade { get; set; }
-        
+
         public string FonteGeradora { get; set; }
-        
+
         //public string NomeDaImagem { get; set; }
-        
-        //public string Imagem { get; set; }       
+        public string imagemEstab { get; set; }
+
+        public string Imagem { get; set; }
 
         public bool AlocaAtividade { get; set; }
 
@@ -28,6 +31,10 @@ namespace GISModel.DTO.AnaliseRisco
         public string Riscos { get; set; }
 
         public string PossiveisDanos { get; set; }
+
+        public string IDEventoPerigoso { get; set; }
+
+        public string IDPerigoPotencial { get; set; }
 
         //public string idControle { get; set; }
 

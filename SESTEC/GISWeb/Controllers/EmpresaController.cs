@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace GISWeb.Controllers
 {
 
-    [Autorizador]
+    //[Autorizador]
     public class EmpresaController : Controller
     {
 

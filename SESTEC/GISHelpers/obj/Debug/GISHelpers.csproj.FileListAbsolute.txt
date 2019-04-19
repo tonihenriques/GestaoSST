@@ -52,3 +52,11 @@ C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GIS
 C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.dll
 C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.pdb
 C:\Users\johnn\Dropbox\SESMT\AWS\4\Git\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csprojAssemblyReference.cache
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\bin\Debug\GISHelpers.dll
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\bin\Debug\GISHelpers.pdb
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\bin\Debug\Ionic.Zip.dll
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csprojAssemblyReference.cache
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CoreCompileInputs.cache
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.csproj.CopyComplete
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.dll
+C:\Users\Antonio\Desktop\NovaGestao\GestaoSST\SESTEC\GISHelpers\obj\Debug\GISHelpers.pdb

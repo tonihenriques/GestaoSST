@@ -285,6 +285,14 @@
     <Content Include="Scripts\Custom\Diretoria\Excluir.js" />
     <Content Include="Scripts\Custom\Diretoria\Lista.js" />
     <Content Include="Scripts\Custom\Diretoria\Novo.js" />
+    <Content Include="Scripts\Custom\DocsPorAtividade\Edicao.js" />
+    <Content Include="Scripts\Custom\DocsPorAtividade\Excluir.js" />
+    <Content Include="Scripts\Custom\DocsPorAtividade\Lista.js" />
+    <Content Include="Scripts\Custom\DocsPorAtividade\Novo.js" />
+    <Content Include="Scripts\Custom\DocumentosPessoal\Edicao.js" />
+    <Content Include="Scripts\Custom\DocumentosPessoal\Excluir.js" />
+    <Content Include="Scripts\Custom\DocumentosPessoal\Lista.js" />
+    <Content Include="Scripts\Custom\DocumentosPessoal\Novo.js" />
     <Content Include="Scripts\Custom\Empregado\Editar.js" />
     <Content Include="Scripts\Custom\Empregado\Listagem.js" />
     <Content Include="Scripts\Custom\Empregado\Novo.js" />
@@ -373,6 +381,8 @@
     <Compile Include="Controllers\CargoController.cs" />
     <Compile Include="Controllers\ContratoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
+    <Compile Include="Controllers\DocsPorAtividadeController.cs" />
+    <Compile Include="Controllers\DocumentosPessoalController.cs" />
     <Compile Include="Controllers\EmpregadoController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EstabelecimentoAmbienteController.cs" />
@@ -535,6 +545,10 @@
     <Content Include="Views\Usuario\Novo.cshtml" />
     <Content Include="Views\Usuario\Edicao.cshtml" />
     <Content Include="Views\Account\DefinirNovaSenha.cshtml" />
+    <Content Include="Views\DocumentosPessoal\Edicao.cshtml" />
+    <Content Include="Views\DocumentosPessoal\Index.cshtml" />
+    <Content Include="Views\DocumentosPessoal\Novo.cshtml" />
+    <Content Include="Views\DocsPorAtividade\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

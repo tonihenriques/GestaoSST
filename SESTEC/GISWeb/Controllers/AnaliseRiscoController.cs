@@ -39,6 +39,13 @@ namespace GISWeb.Controllers
 
         [Inject]
         public IEmpregadoBusiness EmpregadoBusiness { get; set; }
+
+        [Inject]
+        public IEventoPerigosoBusiness EventoPerigosoBusiness { get; set; }
+
+        [Inject]
+        public IPerigoPotencialBusiness PerigoPotencialBusiness { get; set; }
+
         #endregion
 
         // GET: AtividadeAlocada
@@ -59,43 +66,6 @@ namespace GISWeb.Controllers
 
             try
             {
-
-
-                //var ListaAmbientes = from Aloca in AtividadeAlocadaBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.idAlocacao.Equals(idAlocacao)).ToList()
-                //                     join Ambiente in AtividadesDoEstabelecimentoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && (p.IDEstabelecimento.Equals(idEstabelecimento))).ToList()
-
-                //                     on Aloca.idAtividadesDoEstabelecimento equals Ambiente.IDAtividadesDoEstabelecimento                                     
-                //                     into productGrupo
-                //                     from item in productGrupo.DefaultIfEmpty()                                   
-
-
-                //                     join TR in TipoDeRiscoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
-                //                     on Aloca.idAtividadesDoEstabelecimento equals TR.idAtividadesDoEstabelecimento
-
-                //                     into riscoGroup
-                //                     from iten2 in riscoGroup.DefaultIfEmpty()                                    
-
-
-                //                     select new AnaliseRiscosViewModel
-                //                     {
-                //                         DescricaoAtividade = item.DescricaoDestaAtividade,
-                //                         //FonteGeradora = Ambiente.FonteGeradora,
-                //                         NomeDaImagem = item.NomeDaImagem,
-                //                         Imagem = item.Imagem,
-                //                         AlocaAtividade = (item == null ? false : true),
-                //                         IDAtividadeEstabelecimento = item.IDAtividadesDoEstabelecimento,
-                //                         IDAlocacao = idAlocacao,
-                //                         Riscos = iten2.PerigoPotencial.DescricaoEvento,
-                //                         FonteGeradora=iten2.FonteGeradora,
-                //                         EClasseDoRisco = iten2.EClasseDoRisco,
-                //                         Tragetoria = iten2.Tragetoria,
-                //                         PossiveisDanos=iten2.PossiveisDanos.DescricaoDanos,
-                //                         Conhecimento = (item ==null?false:true),
-                //                         BemEstar = (item == null ? false : true),
-
-
-                //                     };
-
 
 
                 var listaAmbientes = from AL in AtividadeAlocadaBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.idAlocacao.Equals(idAlocacao)).ToList()
@@ -121,7 +91,8 @@ namespace GISWeb.Controllers
                                          //FonteGeradora = item1.FonteGeradora,
                                          AlocaAtividade = (item == null ? false : true),
                                          Conhecimento = item.Conhecimento,
-                                         BemEstar = item.BemEstar
+                                         BemEstar = item.BemEstar,
+
 
 
                                      };
@@ -158,7 +129,12 @@ namespace GISWeb.Controllers
 
         public ActionResult SalvarAnaliseRisco(string idEstabelecimento, string idAlocacao)
         {
-            
+
+            ViewBag.EventoPerigoso = new SelectList(EventoPerigosoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList(), "IDEventoPerigoso", "Descricao");
+
+            ViewBag.PerigoPotencial = new SelectList(PerigoPotencialBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList(), "IDPerigoPotencial", "DescricaoEvento");
+
+
 
             var ListaAmbientes = from AL in AtividadeAlocadaBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao) && p.idAlocacao.Equals(idAlocacao)).ToList()
                                  join AR in AnaliseRiscoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
@@ -166,12 +142,12 @@ namespace GISWeb.Controllers
                                  into ARGroup
                                  from item in ARGroup.DefaultIfEmpty()
 
-                                 join AE in AtividadesDoEstabelecimentoBusiness.Consulta.Where(p=>string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
+                                 join AE in AtividadesDoEstabelecimentoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
                                  on AL.idAtividadesDoEstabelecimento equals AE.IDAtividadesDoEstabelecimento
                                  into AEGroup
                                  from item2 in AEGroup.DefaultIfEmpty()
 
-                                 join TR in TipoDeRiscoBusiness.Consulta.Where(p=>string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
+                                 join TR in TipoDeRiscoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
                                  on item2.IDAtividadesDoEstabelecimento equals TR.idAtividadesDoEstabelecimento
                                  into TRGroup
                                  from item3 in TRGroup.DefaultIfEmpty()
@@ -182,47 +158,52 @@ namespace GISWeb.Controllers
                                      //DescricaoAtividade = item.AtividadeAlocada.AtividadesDoEstabelecimento.DescricaoDestaAtividade,
                                      //Riscos = item.AtividadeAlocada.AtividadesDoEstabelecimento.EventoPerigoso.Descricao,
                                      FonteGeradora = item3.FonteGeradora,
+                                     IDAmissao = AL.Alocacao.Admissao.IDAdmissao,
+                                     Imagem = AL.Alocacao.Admissao.Imagem,
                                      Riscos = item3.EventoPerigoso.Descricao,
                                      DescricaoAtividade = item2.DescricaoDestaAtividade,
                                      IDAtividadeAlocada = AL.IDAtividadeAlocada,
                                      Conhecimento = item == null ? false : true,
                                      BemEstar = item == null ? false : true,
                                      PossiveisDanos = item3.PossiveisDanos.DescricaoDanos,
+                                     //IDEventoPerigoso = item?.IDEventoPerigoso ?? null,
+                                     //IDPerigoPotencial=item? .IDPerigoPotencial ?? null,
                                      //Conhecimento = item?.Conhecimento ?? false,
                                      //BemEstar = item?.BemEstar ?? false,
                                      IDAtividadeEstabelecimento = AL.AtividadesDoEstabelecimento.IDAtividadesDoEstabelecimento,
+                                     imagemEstab = AL.AtividadesDoEstabelecimento.Imagem,
                                      AlocaAtividade = item == null ? false : true
                                  };
 
 
-                                     List< AnaliseRiscosViewModel > lAtividadesRiscos = ListaAmbientes.ToList();
+            List<AnaliseRiscosViewModel> lAtividadesRiscos = ListaAmbientes.ToList();
 
             ViewBag.Risco = ListaAmbientes.ToList();
 
             var Emp = from Adm in AdmissaoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
                       join Aloc in AlocacaoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
                       on Adm.IDAdmissao equals Aloc.IdAdmissao
-                      join Empre in EmpregadoBusiness.Consulta.Where(p=>string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
+                      join Empre in EmpregadoBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
                       on Adm.IDEmpregado equals Empre.IDEmpregado
                       join Firm in EmpresaBusiness.Consulta.Where(p => string.IsNullOrEmpty(p.UsuarioExclusao)).ToList()
                       on Adm.IDEmpresa equals Firm.IDEmpresa
                       where Aloc.IDAlocacao.Equals(idAlocacao)
                       select new Admissao()
                       {
-                          DataAdmissao =Adm.DataAdmissao,
-                          Empresa= new Empresa()
+                          DataAdmissao = Adm.DataAdmissao,
+                          Empresa = new Empresa()
                           {
-                             NomeFantasia = Firm.NomeFantasia
+                              NomeFantasia = Firm.NomeFantasia
 
                           },
 
-                          Empregado =new Empregado()
+                          Empregado = new Empregado()
                           {
-                            Nome = Empre.Nome,
-                            DataNascimento = Empre.DataNascimento,
-                        
+                              Nome = Empre.Nome,
+                              DataNascimento = Empre.DataNascimento,
+
                           }
-                         
+
 
                       };
 
@@ -233,14 +214,14 @@ namespace GISWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult SalvarAnaliseRisco(AnaliseRisco oAnaliseRisco,string EmpID, string AtivEstabID,string FonteID, bool ConhecID,bool BemEstarID, string idATivAlocada)
+        public ActionResult SalvarAnaliseRisco(AnaliseRisco oAnaliseRisco, string AtivEstabID, string idATivAlocada, bool ConhecID, bool BemEstarID)
         {
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    oAnaliseRisco.IDAlocacao = EmpID;
+
                     oAnaliseRisco.IDAtividadesDoEstabelecimento = AtivEstabID;
                     oAnaliseRisco.Conhecimento = ConhecID;
                     oAnaliseRisco.BemEstar = BemEstarID;
@@ -276,7 +257,7 @@ namespace GISWeb.Controllers
             }
 
         }
-        
+
 
 
         private string RenderRazorViewToString(string viewName, object model = null)
